@@ -4,8 +4,14 @@ import axios from 'axios';
 
 const App = () => {
 
+  //Hooks
+//travel card array state
 const [travelCard, setNewTravelCard] = useState([]);
 
+//display states
+const [displayAddTravelCard, setDisplayAddTravelCard] = useState(false)
+
+//Model states
 const [newImage, setNewImage] = useState();
 const [newPlace, setNewPlace] = useState();
 const [newStay, setNewStay] = useState(false)
@@ -13,6 +19,11 @@ const [newLink, setNewLink] = useState()
 const [newNotes, setNewNotes] = useState()
 const [newRating, setNewRating] = useState()
 const [newUsername, setNewUsername] = useState()
+
+//update states
+
+
+
 
 //get travel data
 const getTravelCards = () => {
@@ -48,12 +59,16 @@ const handleCreate = (addTC) => {
         setNewTravelCard(response.data)
       })
   })
+  setDisplayAddTravelCard(!displayAddTravelCard)
 }
 
 
 
+//displays
 
-
+const showAddTravelCard = () => {
+  setDisplayAddTravelCard(!displayAddTravelCard)
+}
 
 
 
@@ -62,18 +77,30 @@ const handleCreate = (addTC) => {
   return (
     <div className="App">
       <h1>Lets travel</h1>
-      
+      <section>
+        <button className='addButton' onClick={showAddTravelCard}>
+          Add Travel Spot Here
+        </button>
+        {displayAddTravelCard?
+          <div className='addformbox'>
+            <form onSubmit = {handleCreate}>
+              <label> </label><input type='text' onChange={handleNew}
+            </form>
+          </div>}
+      </section>
+
+
       <div className='travelCards'>
         {travelCard.map((tc) => {
           return (
             <div key={tc._id}>
             <img src={tc.image}/>
-            <h5>{tc.place}</h5>
-            <h5>{tc.stay}</h5>
+            <h5>What's this place? {tc.place}</h5>
+            <h5>Where'd you stay? {tc.stay}</h5>
             <h5>{tc.link}</h5>
-            <h5>{tc.notes}</h5>
-            <h5>{tc.rating}</h5>
-            <h5>{tc.username}</h5>
+            <h5>My thoughts and tips: <br/>{tc.notes}</h5>
+            <h5>Rating: {tc.rating}</h5>
+            <h5>Username: {tc.username}</h5>
             </div>
           )
         })}
