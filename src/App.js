@@ -70,25 +70,54 @@ const showAddTravelCard = () => {
   setDisplayAddTravelCard(!displayAddTravelCard)
 }
 
-
-
+//new card changes
+const submitNewImage = (event) => {
+  setNewImage(event.target.value)
+}
+const submitNewPlace = (event) => {
+  setNewPlace(event.target.value)
+}
+const submitNewStay = (event) => {
+  setNewStay(event.target.value)
+}
+const submitNewLink = (event) => {
+  setNewLink(event.target.value)
+}
+const submitNewNotes = (event) => {
+  setNewNotes(event.target.value)
+}
+const submitNewRating = (event) => {
+  setNewRating(event.target.value)
+}
+const submitNewUsername = (event) => {
+  setNewUsername(event.target.value)
+}
 
 
   return (
     <div className="App">
       <h1>Lets travel</h1>
       <section>
-        <button className='addButton' onClick={showAddTravelCard}>
+        <button className='addButton' type= 'button' onClick={showAddTravelCard}>
           Add Travel Spot Here
         </button>
         {displayAddTravelCard?
           <div className='addformbox'>
             <form onSubmit = {handleCreate}>
-              <label> </label><input type='text' onChange={handleNew}
-            </form>
-          </div>}
-      </section>
+              <label>Image link:</label><input type='text' onChange={submitNewImage}/><br/>
+              <label>What's this place?</label><input type='text' onChange={submitNewPlace}/><br/>
+              <label>Where'd you stay?</label><input type='text' onChange={submitNewStay}/><br/>
+              <label>Link of where you stayed:</label><input type='text' onChange={submitNewLink}/><br/>
+              <label>Notes on teh place:</label><input type='text' onChange={submitNewNotes}/><br/>
+              <label>Rating:</label><input type='text' onChange={submitNewRating}/><br/>
+              <label>Username:</label><input type='text' onChange={submitNewUsername}/><br/>
 
+              <input className='inputbutton' type='submit' value='Post New Travel Card'/>
+            </form>
+          </div>
+          : null }
+      </section>
+      
 
       <div className='travelCards'>
         {travelCard.map((tc) => {
