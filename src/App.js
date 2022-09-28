@@ -42,6 +42,7 @@ useEffect(() => {
 //create new travel card
 
 const handleCreate = (addTC) => {
+  addTC.preventDefault()
   axios.post('http://localhost:3000/tc',
     {
       image: newImage,
