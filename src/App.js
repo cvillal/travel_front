@@ -19,7 +19,8 @@ const [newLink, setNewLink] = useState()
 const [newNotes, setNewNotes] = useState()
 const [newRating, setNewRating] = useState()
 const [newUsername, setNewUsername] = useState()
-
+const [newLat, setNewLat] = useState(0)
+const [newLng, setNewLng] = useState (0)
 //update states
 
 
@@ -52,6 +53,8 @@ const handleCreate = (addTC) => {
       notes:newNotes,
       rating:newRating,
       username:newUsername,
+      lat: newLat,
+      lng: newLng
     }
   ).then(() => {
     axios
@@ -92,6 +95,12 @@ const submitNewRating = (event) => {
 }
 const submitNewUsername = (event) => {
   setNewUsername(event.target.value)
+}
+const submitNewLat = (event) => {
+  setNewLat(event.target.value)
+}
+const submitNewLng = (event) => {
+  setNewLng(event.target.value)
 }
 
 
