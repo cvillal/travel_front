@@ -42,7 +42,7 @@ useEffect(() => {
 //create new travel card
 
 const handleCreate = (addTC) => {
-  addTC.preventDefault()
+  addTC.preventDefault();
   axios.post('http://localhost:3000/tc',
     {
       image: newImage,
@@ -107,9 +107,11 @@ const submitNewUsername = (event) => {
             <form onSubmit = {handleCreate}>
               <label>Image link:</label><input type='text' onChange={submitNewImage}/><br/>
               <label>What's this place?</label><input type='text' onChange={submitNewPlace}/><br/>
-              <label>Where'd you stay?</label><input type='text' onChange={submitNewStay}/><br/>
-              <label>Link of where you stayed:</label><input type='text' onChange={submitNewLink}/><br/>
-              <label>Notes on teh place:</label><input type='text' onChange={submitNewNotes}/><br/>
+              <label>Where'd you stay? <br/> airbnb </label><input type='checkbox' value='false' onChange={submitNewStay}/>
+              <label>hotel</label><input type='checkbox' value='false' onChange={submitNewStay}/>
+              <label>friend's place</label><input type='checkbox' value='false' onChange={submitNewStay}/><br/>
+              <details><summary><label>Have a link of where you stayed?</label></summary><input type='text' onChange={submitNewLink}/></details>
+              <label>Notes on the place:</label><input type='text' onChange={submitNewNotes}/><br/>
               <label>Rating:</label><input type='text' onChange={submitNewRating}/><br/>
               <label>Username:</label><input type='text' onChange={submitNewUsername}/><br/>
 
