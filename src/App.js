@@ -22,7 +22,7 @@ const [newUsername, setNewUsername] = useState(' ')
 const [newLat, setNewLat] = useState(0)
 const [newLng, setNewLng] = useState (0)
 //update states
-
+const [cardToggle, setCardToggle] = useState(true)
 
 
 
@@ -90,13 +90,26 @@ const updateTravelCard = (travelData) => {
   })
 }
 
+//delete travel card
+
+const handleDelete = (deleteTC) => {
+  axios.delete('http://localhost:3000/tc/'+ deleteTC._id)
+       .then(() => {
+        axios
+          .get('http://localhost300/tc')
+          .then((response) => {
+            setNewTravelCard(response.data)
+          })
+       })
+}
+
 //displays
 
 const showAddTravelCard = () => {
   setDisplayAddTravelCard(!displayAddTravelCard)
 }
-const showEditTravelCard = (tc) => {
-  document.getElementById('edittc'+tc._id).classList.toggle('showhide');
+const editToggle = () => {
+  { cardToggle ? setCardToggle(false) : setCardToggle (true) }
 }
 
 //new card changes
@@ -159,7 +172,7 @@ const submitNewLng = (event) => {
       <div className='travelCards'>
         {travelCard.map((tc) => {
           return (
-            <div key={tc._id}>
+            <div className="cards" key={tc._id}>
               <img src={tc.image} style={{height:"300px"}}/>
               <h5>What's this place? {tc.place}</h5>
               <h5>Where'd you stay? {tc.stay}</h5>
@@ -169,8 +182,8 @@ const submitNewLng = (event) => {
               <h5>Username: {tc.username}</h5>
               
               <>
-              <button onClick={() => {showEditTravelCard(tc)}}>edit</button>
-              <section id={'edittc'+tc._id}>
+              <button onClick={(event) => {editToggle(tc)}}>edit</button>
+              <section>
               <form  onSubmit={() => {updateTravelCard(tc)}}>
                 <label>Image link:</label><input type='text' placeholder={tc.image} onChange={submitNewImage}/><br/>
                 <label>What's this place?</label><input type='text' placeholder={tc.place} onChange={submitNewPlace}/><br/>
@@ -183,6 +196,7 @@ const submitNewLng = (event) => {
                 <label>Username:</label><input type='text' placeholder={tc.username} onChange={submitNewUsername}/><br/>
 
                 <input className='inputbutton' type='submit' value='Update Travel Card' onClick={(e) => {updateTravelCard(tc)}}/>
+                <button onClick={(event) => {handleDelete(tc)}}>Delete this Travel Card</button>
               </form>
               </section>
               </>
