@@ -1,6 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import {GoogleMap, LoadScript} from '@react-google-maps/api';
 
 const App = () => {
 
@@ -22,7 +23,7 @@ const [newUsername, setNewUsername] = useState(' ')
 const [newLat, setNewLat] = useState(0)
 const [newLng, setNewLng] = useState (0)
 //update states
-const [cardToggle, setCardToggle] = useState(true)
+const [cardToggle, setCardToggle] = useState(false)
 
 
 
@@ -109,7 +110,7 @@ const showAddTravelCard = () => {
   setDisplayAddTravelCard(!displayAddTravelCard)
 }
 const editToggle = () => {
-  { cardToggle ? setCardToggle(false) : setCardToggle (true) }
+  { cardToggle ? setCardToggle(true) : setCardToggle (false) }
 }
 
 //new card changes
@@ -140,6 +141,16 @@ const submitNewLat = (event) => {
 const submitNewLng = (event) => {
   setNewLng(event.target.value)
 }
+
+//MAP STUFF
+const containerStyle ={
+  width: '80vw',
+  height: '80vh'
+};
+const center = {
+  lat: 40.730610,
+  lng: -73.935242
+};
 
 
   return (
@@ -201,14 +212,34 @@ const submitNewLng = (event) => {
               </section>
               </>
             </div>
-            
           )
+           
+        
+          
+          
         })}
+  <LoadScript
+            googleMapsApiKey={process.env.REACT_APP_GMKEY}
+                        >
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={8}
+                >
+              </GoogleMap>
+          
+  </LoadScript>
+
+
       </div>
 
 
     </div>
   );
+
+
+
+
 }
 
 export default App;
