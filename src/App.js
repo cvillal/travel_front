@@ -1,7 +1,8 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {GoogleMap, LoadScript} from '@react-google-maps/api';
+import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
+
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const [newUsername, setNewUsername] = useState(' ')
 const [newLat, setNewLat] = useState(0)
 const [newLng, setNewLng] = useState (0)
 //update states
-const [cardToggle, setCardToggle] = useState(false)
+const [showForm, setShowForm] = useState(false)
 
 
 
@@ -109,9 +110,11 @@ const handleDelete = (deleteTC) => {
 const showAddTravelCard = () => {
   setDisplayAddTravelCard(!displayAddTravelCard)
 }
-const editToggle = () => {
-  { cardToggle ? setCardToggle(true) : setCardToggle (false) }
+const editButton = () => {
+  { showForm ? setShowForm(false) : setShowForm (true) }
 }
+
+
 
 //new card changes
 const submitNewImage = (event) => {
@@ -143,6 +146,16 @@ const submitNewLng = (event) => {
 }
 
 //MAP STUFF
+
+const centers = [{
+  lat: 37.832,
+  lng: -122.424
+},
+{
+  lat: 37.832,
+  lng: -125.424
+}];
+
 const containerStyle ={
   width: '80vw',
   height: '80vh'
@@ -151,6 +164,32 @@ const center = {
   lat: 40.730610,
   lng: -73.935242
 };
+
+const NoSearchResults = () => {
+    // {travelCard.map((i) => { 
+    return (
+      <>
+    
+        <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+          }}
+          position={centers[0]}
+        />
+         
+      </>
+     
+  )
+  //  })}
+}
+
+
 
 
   return (
@@ -193,9 +232,10 @@ const center = {
               <h5>Username: {tc.username}</h5>
               
               <>
-              <button onClick={(event) => {editToggle(tc)}}>edit</button>
-              <section>
-              <form  onSubmit={() => {updateTravelCard(tc)}}>
+              <button onClick={editButton}>edit</button>
+              <button onClick={(event) => {handleDelete(tc)}}>Delete this Travel Card</button>
+              {showForm ? (
+                <form  onSubmit={() => {updateTravelCard(tc)}}>
                 <label>Image link:</label><input type='text' placeholder={tc.image} onChange={submitNewImage}/><br/>
                 <label>What's this place?</label><input type='text' placeholder={tc.place} onChange={submitNewPlace}/><br/>
                 <label>Where'd you stay? <br/> airbnb </label><input type='checkbox' value='false'  onChange={submitNewStay}/>
@@ -207,9 +247,12 @@ const center = {
                 <label>Username:</label><input type='text' placeholder={tc.username} onChange={submitNewUsername}/><br/>
 
                 <input className='inputbutton' type='submit' value='Update Travel Card' onClick={(e) => {updateTravelCard(tc)}}/>
-                <button onClick={(event) => {handleDelete(tc)}}>Delete this Travel Card</button>
+                
               </form>
-              </section>
+              ) : (
+              null
+          )}
+              
               </>
             </div>
           )
@@ -225,7 +268,10 @@ const center = {
                 mapContainerStyle={containerStyle}
                 center={center}
                 zoom={8}
-                >
+              >
+            
+          <NoSearchResults/>
+          
               </GoogleMap>
           
   </LoadScript>
