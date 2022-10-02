@@ -337,7 +337,8 @@ const NoSearchResults = () => {
               
               <>
               <button onClick={editButton}>edit</button>
-              <button onClick={(event) => {handleDelete(tc)}}>Delete this Travel Card</button>
+              <button onClick={() => {
+                if (window.confirm("Are you sure you would like to delete this travel card?")){handleDelete(tc)}}}>Delete this Travel Card</button>
               {showForm ? (
                 <form  onSubmit={() => {updateTravelCard(tc)}}>
                 <label>Image link:</label><input type='text' placeholder={tc.image} onChange={submitNewImage}/><br/>
