@@ -148,25 +148,50 @@ const submitNewLng = (event) => {
 //MAP STUFF
 
 const centers = [{
-  lat: 37.832,
-  lng: -122.424
+  lat: 20.7204,
+  lng: 156.1552
 },
 {
-  lat: 37.832,
-  lng: -125.424
-}];
+  lat: 40.9655,
+  lng: 8.2095
+},
+{
+  lat: -0.36085,
+  lng: -78.14784
+},
+{
+  lat: 46.6187,
+  lng: 12.3028
+},
+{
+  lat: 35.78697,
+  lng: -5.93179
+},
+{
+  lat: 19.6861,
+  lng: -98.8716
+},
+{
+  lat: 48.8606,
+  lng: 2.3376
+}
+
+
+];
 
 const containerStyle ={
   width: '80vw',
   height: '80vh'
+  
 };
 const center = {
   lat: 40.730610,
   lng: -73.935242
 };
 
+//MARKERS
 const NoSearchResults = () => {
-    // {travelCard.map((i) => { 
+    // centers.map((i) => { 
     return (
       <>
     
@@ -179,10 +204,89 @@ const NoSearchResults = () => {
             scale: 2,
             strokeColor: "gold",
             strokeWeight: 2,
+            
           }}
           position={centers[0]}
+          // infoWindow="hello"
         />
-         
+         <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+            
+          }}
+          position={centers[1]} 
+        />
+        <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+            
+          }}
+          position={centers[2]}
+          />
+          <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+            
+          }}
+          position={centers[3]}
+          />
+          <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+            
+          }}
+          position={centers[4]}
+          />
+          <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+            
+          }}
+          position={centers[5]}
+          />
+          <Marker
+          icon={{
+            path:
+              "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
+            fillColor: "red",
+            fillOpacity: 0.9,
+            scale: 2,
+            strokeColor: "gold",
+            strokeWeight: 2,
+            
+          }}
+          position={centers[6]}
+          />
       </>
      
   )
@@ -267,7 +371,7 @@ const NoSearchResults = () => {
               <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={8}
+                zoom={2}
               >
             
           <NoSearchResults/>
