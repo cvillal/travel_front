@@ -298,7 +298,7 @@ const NoSearchResults = () => {
 
   return (
     <div className="App">
-      <h1>Lets travel</h1>
+      <h1>Where've You Been?</h1>
       <section>
         <button className='addButton' type= 'button' onClick={showAddTravelCard}>
           Add Travel Spot Here
@@ -327,11 +327,15 @@ const NoSearchResults = () => {
         {travelCard.map((tc) => {
           return (
             <div className="cards" key={tc._id}>
-              <img src={tc.image} style={{height:"300px"}}/>
-              <h5>What's this place? {tc.place}</h5>
+              <div className='pictureContainer'>
+                <img className='pic' src={tc.image} style={{height:"180px"}}/>
+              </div>
+              <h5>What's this place? <br/> {tc.place}</h5>
               <h5>Where'd you stay? {tc.stay}</h5>
-              <h5>{tc.link}</h5>
-              <h5>My thoughts and tips: <br/>{tc.notes}</h5>
+              <h5>Hotel/Airbnb Link: <br/> {tc.link}</h5>
+              <details>
+              <summary><label>My thoughts and tips:</label></summary> <br/> <h5>{tc.notes}</h5>
+              </details>
               <h5>Rating: {tc.rating}</h5>
               <h5>Username: {tc.username}</h5>
               
@@ -340,7 +344,7 @@ const NoSearchResults = () => {
               <button onClick={() => {
                 if (window.confirm("Are you sure you would like to delete this travel card?")){handleDelete(tc)}}}>Delete this Travel Card</button>
               {showForm ? (
-                <form  onSubmit={() => {updateTravelCard(tc)}}>
+                <form className='edit' onSubmit={() => {updateTravelCard(tc)}}>
                 <label>Image link:</label><input type='text' placeholder={tc.image} onChange={submitNewImage}/><br/>
                 <label>What's this place?</label><input type='text' placeholder={tc.place} onChange={submitNewPlace}/><br/>
                 <label>Where'd you stay? <br/> airbnb </label><input type='checkbox' value='false'  onChange={submitNewStay}/>

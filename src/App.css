@@ -37,9 +37,41 @@
   }
 }
 
-.cards{
+/* .cards{
   border: 2px solid black;
   border-radius: 5px;
   width: 18 vw;
 
+} */
+/* .pic {
+  width: 80%;
+  display: block;
+} */
+/* .pictureContainer {
+  height: 12vw;
+} */
+.travelCards {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  margin-top: 12px;
+}
+.cards {
+  background-color: rgb(244, 242, 245);
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1em;
+  text-align: center;
+  margin: 3px 3px 3px 3px;
+  width: 20vw;
+  line-height: 16px;
+  overflow-wrap:break-word;
+}
+
+.edit{
+    text-align: center;
+    line-height: 16px;
 }
