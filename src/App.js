@@ -31,7 +31,7 @@ const [showForm, setShowForm] = useState(false)
 //get travel data
 const getTravelCards = () => {
   axios
-    .get('http://localhost:3000/tc', {headers: {"Access-Control-Allow-Origin": "*"}})
+    .get('https://arcane-reef-11604.herokuapp.com/tc', {headers: {"Access-Control-Allow-Origin": "*"}})
     .then((response) =>{
         setNewTravelCard(response.data)
     });
@@ -46,7 +46,7 @@ useEffect(() => {
 
 const handleCreate = (addTC) => {
   addTC.preventDefault();
-  axios.post('http://localhost:3000/tc',
+  axios.post('https://arcane-reef-11604.herokuapp.com/tc',
     {
       image: newImage,
       place: newPlace,
@@ -60,7 +60,7 @@ const handleCreate = (addTC) => {
     }
   ).then(() => {
     axios
-      .get('http://localhost:3000/tc')
+      .get('https://arcane-reef-11604.herokuapp.com/tc')
       .then((response) =>{
         setNewTravelCard(response.data)
       })
@@ -71,7 +71,7 @@ const handleCreate = (addTC) => {
 //update travel card
 
 const updateTravelCard = (travelData) => {
-  axios.put(`http://localhost:3000/tc/${travelData._id}`,
+  axios.put(`https://arcane-reef-11604.herokuapp.com/tc/${travelData._id}`,
     {
       image: newImage,
       place: newPlace,
@@ -85,7 +85,7 @@ const updateTravelCard = (travelData) => {
     }
   ).then(() => {
     axios
-      .get('http://localhost:3000/tc')
+      .get('https://arcane-reef-11604.herokuapp.com/tc')
       .then((response) => {
         setNewTravelCard(response.data)
       })
@@ -95,10 +95,10 @@ const updateTravelCard = (travelData) => {
 //delete travel card
 
 const handleDelete = (deleteTC) => {
-  axios.delete('http://localhost:3000/tc/'+ deleteTC._id)
+  axios.delete('https://arcane-reef-11604.herokuapp.com/tc/'+ deleteTC._id)
        .then(() => {
         axios
-          .get('http://localhost300/tc')
+          .get('https://arcane-reef-11604.herokuapp.com/tc')
           .then((response) => {
             setNewTravelCard(response.data)
           })
